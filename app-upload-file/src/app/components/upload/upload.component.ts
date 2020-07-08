@@ -8,8 +8,19 @@ import { UploadService } from '../../services/upload.service';
 })
 export class UploadComponent implements OnInit {
   uploadFile: Array<File>;
+  public datos: any;
+  data: any;
 
-  constructor(private _uploadService: UploadService) { }
+  constructor(private _uploadService: UploadService) { 
+    this.datos = {
+      nonbre: '',
+      artista: ''
+    }
+
+    this.data = {
+      sale: 'este sale'
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -18,8 +29,12 @@ export class UploadComponent implements OnInit {
     const formData = new FormData();
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.uploadFile.length; i++) {
-      formData.append('upload[]', this.uploadFile[i], this.uploadFile[i].name);
+      formData.append('upload', this.uploadFile[i], this.uploadFile[i].name);
+      formData.append('data', this.data);
     }
+    // for(let i=0; i< this.datos.length; i++) {
+
+    
     // Llamar al servicio
     this._uploadService.subirArchivo(formData).subscribe(
       res => {
@@ -29,6 +44,8 @@ export class UploadComponent implements OnInit {
         console.log('Ha ocurrido un horror al subir!!');
       }
     );
+
+    console.log(this.datos);
   }
 
   onFileChange(event) {

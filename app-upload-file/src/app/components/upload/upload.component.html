@@ -7,15 +7,30 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text upload" id="btnUpload" (click)="onUpload()">
-              Subir
-            </span>
-          </div>
-          <div class="custom-file">
-            <form method="POST" enctype="multipart/form-data">
-              <input type="file" class="custom-file-input" id="input-custom-file" (change)="onFileChange($event)">
-              <label for="input-custom-file" class="custom-file-label">Elige un archivo</label>
+
+          <div class="">
+            <form #useForm="ngForm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Nombre</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="nombre" #nombre="ngModel" [(ngModel)] = "datos.nombre">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Artista</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="artista" #artista="ngModel" [(ngModel)] = "datos.artista">
+              </div>
+
+              <div class="form-group form-check">
+                <input type="file" class="" id="input-custom-file" (change)="onFileChange($event)">
+                <label for="input-custom-file" class="custom-file-label">Elige un archivo</label>
+              </div>
+
+
+              <div class="input-group-prepend">
+                <span class="input-group-text upload" id="btnUpload" (click)="onUpload()">
+                  Subir
+                </span>
+              </div>
             </form>
           </div>
         </div>
